@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $allCourses = Course::all();
+        $allCourses = Course::orderBy("id", "desc")->get();
         return view('courses.index')->with('courses', $allCourses);
     }
 
@@ -25,24 +25,33 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('form-course');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $courseInfo = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $course = Course::firstOrCreate($courseInfo);
+
+        if ($course->save()) {
+            return redirect()->route("courses.index")->with('success', "New course registered successfully");
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function show(Course $course)
@@ -53,34 +62,44 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function edit(Course $course)
     {
-        //
+        return view('form-course')->with(['course' => $course]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $courseInfo = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($course->fill($courseInfo)->save()) {
+            return redirect()->route("courses.index")
+                ->with('success', "Course updated successfully");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param \App\Models\Course $course
      * @return \Illuminate\Http\Response
      */
     public function destroy(Course $course)
     {
-        //
+        if ($course->delete()) {
+            return response()->json('Deleted successfully');
+        }
     }
 }

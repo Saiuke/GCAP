@@ -28,7 +28,6 @@ class PeopleController extends Controller
             return redirect()->route($personCategory . "s.index")
                 ->with('success', "New $personCategory registered successfully");
         }
-
     }
 
     /**

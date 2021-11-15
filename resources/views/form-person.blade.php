@@ -20,7 +20,9 @@
                 method="POST">
                 <div class="row g-3">
                     @csrf
-                    @method('PUT')
+                    @if(isset($person->id))
+                        @method('PUT')
+                    @endif
                     <input type="hidden" name="category" id="category" value="{{ $person->category ?? $personCategoryId }}">
                     <div class="col-4">
                         <label for="name" class="form-label">Name</label>

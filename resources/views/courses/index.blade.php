@@ -2,7 +2,7 @@
 @section('content')
     <div class="row my-4">
         <div class="col">
-            <a type="button" class="btn btn-primary" href="{{ route('students.create') }}">Register new course</a>
+            <a type="button" class="btn btn-primary" href="{{ route('courses.create') }}">Register new course</a>
         </div>
     </div>
     <div class="card my-4">
@@ -32,9 +32,9 @@
                         <td>{{ rand(8,37) }}</td>
                         <td>
                             <div class="btn-group me-2" role="group" id="action-buttons">
-                                <button class="btn btn-sm btn-primary">
+                                <a class="btn btn-sm btn-primary" href="{{ route('courses.edit', $course->id) }}">
                                     <i class="fas fa-user-edit"></i>
-                                </button>
+                                </a>
                                 <button class="btn btn-sm btn-danger delete-entry"
                                         data-action-route="/courses/{{ $course->id }}"
                                         data-entry-id="{{ $course->id }}">
