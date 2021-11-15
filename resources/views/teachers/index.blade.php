@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                 @foreach ($teachers as $teacher)
-                    <tr>
+                    <tr id="row_{{ $teacher->id }}">
                         <td>{{ $teacher->name }}</td>
                         <td>{{ $teacher->document }}</td>
                         <td>{{ $teacher->phone }}</td>
@@ -33,9 +33,11 @@
                                 <a class="btn btn-sm btn-primary" href="{{ route('teachers.edit', $teacher->id) }}">
                                     <i class="fas fa-user-edit"></i>
                                 </a>
-                                <a class="btn btn-sm btn-danger delete-entry  href="{{ route('teachers.destroy', $teacher->id) }}"">
+                                <button class="btn btn-sm btn-danger delete-entry"
+                                        data-action-route="/people/{{ $teacher->id }}"
+                                        data-entry-id="{{ $teacher->id }}">
                                     <i class="fas fa-trash-alt"></i>
-                                </a>
+                                </button>
                             </div>
                         </td>
                     </tr>

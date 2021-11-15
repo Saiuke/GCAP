@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                 @foreach ($courses as $course)
-                    <tr>
+                    <tr id="row_{{ $course->id }}">
                         <td>{{ $course->id }}</td>
                         <td>{{ $course->name }}</td>
                         <td>{{ $course->description }}</td>
@@ -35,7 +35,9 @@
                                 <button class="btn btn-sm btn-primary">
                                     <i class="fas fa-user-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger delete-entry">
+                                <button class="btn btn-sm btn-danger delete-entry"
+                                        data-action-route="/courses/{{ $course->id }}"
+                                        data-entry-id="{{ $course->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>

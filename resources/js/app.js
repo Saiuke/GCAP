@@ -1,4 +1,12 @@
-require("./bootstrap");
+//Jquery
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+//BS
+require('./bootstrap');
+
+// Swal Modals
+import swal from 'sweetalert';
 
 window.addEventListener("DOMContentLoaded", (event) => {
     // Toggle the side navigation
@@ -16,4 +24,40 @@ window.addEventListener("DOMContentLoaded", (event) => {
             );
         });
     }
+
+    $("body").on("click", ".delete-entry", (event) => {
+        let clickedButton = event.currentTarget;
+        let callURL = clickedButton.getAttribute('data-action-route');
+        console.log(callURL);
+        let entryId = clickedButton.getAttribute('data-entry-id');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover the data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: callURL,
+                    data: {
+                        "_token": $("meta[name='csrf-token']").attr("content"),
+                        id: entryId
+                    },
+                    method: 'DELETE',
+                    success: () => {
+                        swal("The data has been deleted!", {
+                            icon: "success",
+                        });
+                        $('#row_' + entryId).fadeOut();
+                    },
+                    error: () => {
+                        swal("There was an error deleting the data. Please try again!", {
+                            icon: "error",
+                        });
+                    }
+                });
+            }
+        });
+    });
 });
