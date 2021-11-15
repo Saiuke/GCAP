@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PeopleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,9 @@ use App\Http\Controllers\CourseController;
 |
 */
 
-Route::get('/', function () { return view('home'); });
+Route::get('/', function () { return view('home'); })->name('home');
 Route::resource('students', StudentController::class);
+Route::resource('people', PeopleController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
+

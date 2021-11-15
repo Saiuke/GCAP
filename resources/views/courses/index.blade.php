@@ -1,5 +1,10 @@
 @extends('home')
 @section('content')
+    <div class="row my-4">
+        <div class="col">
+            <a type="button" class="btn btn-primary" href="{{ route('students.create') }}">Register new course</a>
+        </div>
+    </div>
     <div class="card my-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>

@@ -1,5 +1,10 @@
 @extends('home')
 @section('content')
+    <div class="row my-4">
+        <div class="col">
+            <a type="button" class="btn btn-primary" href="{{ route('students.create') }}">Register new student</a>
+        </div>
+    </div>
     <div class="card my-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -25,12 +30,12 @@
                         <td>{{ $student->email }}</td>
                         <td>
                             <div class="btn-group me-2" role="group" id="action-buttons">
-                                <button class="btn btn-sm btn-primary">
+                                <a class="btn btn-sm btn-primary" href="{{ route('students.edit', $student->id) }}">
                                     <i class="fas fa-user-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger delete-entry">
+                                </a>
+                                <a class="btn btn-sm btn-danger delete-entry href="{{ route('students.destroy', $student->id) }}"">
                                     <i class="fas fa-trash-alt"></i>
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>

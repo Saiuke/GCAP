@@ -100,6 +100,11 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        @include('flash-messages')
+                    </div>
+                </div>
                 @yield('content')
             </div>
         </main>
