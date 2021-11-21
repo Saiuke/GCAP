@@ -1,6 +1,6 @@
 @extends('home')
 @section('content')
-    <div class="row my-4">
+    <div class="row mb-4">
         <div class="col">
             <a type="button" class="btn btn-primary" href="{{ route('teachers.create') }}">Register new teacher</a>
         </div>
