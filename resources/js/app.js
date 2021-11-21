@@ -1,5 +1,6 @@
 //Jquery
 import $ from 'jquery';
+
 window.$ = window.jQuery = $;
 
 //BS
@@ -23,6 +24,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 document.body.classList.contains("sb-sidenav-toggled")
             );
         });
+
+        // Activate all tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
     }
 
     $("body").on("click", ".delete-entry", (event) => {

@@ -32,15 +32,16 @@
                         <td>{{ rand(8,37) }}</td>
                         <td>
                             <div class="btn-group me-2" role="group" id="action-buttons">
-                                <a class="btn btn-sm btn-primary" href="{{ route('courses.show', $course->id) }}">
+                                <a class="btn btn-sm btn-secondary" href="{{ route('courses.show', $course->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View course's details">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a class="btn btn-sm btn-primary" href="{{ route('courses.edit', $course->id) }}">
+                                <a class="btn btn-sm btn-primary" href="{{ route('courses.edit', $course->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit course's info">
                                     <i class="fas fa-user-edit"></i>
                                 </a>
                                 <button class="btn btn-sm btn-danger delete-entry"
                                         data-action-route="/courses/{{ $course->id }}"
-                                        data-entry-id="{{ $course->id }}">
+                                        data-entry-id="{{ $course->id }}"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this course">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>

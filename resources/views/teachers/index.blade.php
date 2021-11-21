@@ -30,12 +30,12 @@
                         <td>{{ $teacher->email }}</td>
                         <td>
                             <div class="btn-group me-2" role="group" id="action-buttons">
-                                <a class="btn btn-sm btn-primary" href="{{ route('teachers.edit', $teacher->id) }}">
+                                <a class="btn btn-sm btn-primary" href="{{ route('teachers.edit', $teacher->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit teacher's info">
                                     <i class="fas fa-user-edit"></i>
                                 </a>
                                 <button class="btn btn-sm btn-danger delete-entry"
                                         data-action-route="/people/{{ $teacher->id }}"
-                                        data-entry-id="{{ $teacher->id }}">
+                                        data-entry-id="{{ $teacher->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete teacher">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
