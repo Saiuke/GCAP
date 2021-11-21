@@ -32,6 +32,9 @@
                         <td>{{ rand(8,37) }}</td>
                         <td>
                             <div class="btn-group me-2" role="group" id="action-buttons">
+                                <a class="btn btn-sm btn-primary" href="{{ route('courses.show', $course->id) }}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                                 <a class="btn btn-sm btn-primary" href="{{ route('courses.edit', $course->id) }}">
                                     <i class="fas fa-user-edit"></i>
                                 </a>

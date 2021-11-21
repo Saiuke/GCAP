@@ -56,7 +56,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $students = [];
+        $teachers = [];
+        return  view("courses.details")->with("course", $course);
     }
 
     /**
