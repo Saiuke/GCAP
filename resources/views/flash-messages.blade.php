@@ -1,23 +1,23 @@
 @if ($message = Session::get('success'))
-    <div class="alert alert-success mb-0">
+    <div class="alert alert-success mb-4">
         <strong>{{ $message }}</strong>
     </div>
 @endif
 
 @if ($message = Session::get('error'))
-    <div class="alert alert-danger mb-0">
+    <div class="alert alert-danger mb-4">
         <strong>{{ $message }}</strong>
     </div>
 @endif
 
 @if ($message = Session::get('warning'))
-    <div class="alert alert-warning mb-0">
+    <div class="alert alert-warning mb-4">
         <strong>{{ $message }}</strong>
     </div>
 @endif
 
 @if ($message = Session::get('info'))
-    <div class="alert alert-info mb-0">
+    <div class="alert alert-info mb-4">
         <strong>{{ $message }}</strong>
     </div>
 @endif
