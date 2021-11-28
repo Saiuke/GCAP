@@ -18,4 +18,8 @@ class People extends Model
     public function getCategoryLabelAttribute(){
         return strtolower(PeopleCategories::where('id', $this->category)->first()->label);
     }
+
+    public function courses(){
+        return $this->belongsToMany(Course::class);
+    }
 }
