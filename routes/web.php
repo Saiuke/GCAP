@@ -21,4 +21,5 @@ Route::resource('students', StudentController::class);
 Route::resource('people', PeopleController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
+Route::get('/courses/{courseId}/delete-person/{personId}', [CourseController::class, 'deletePerson'])->name("courses.delete.person");
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\People;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -56,9 +58,10 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $students = [];
-        $teachers = [];
-        return  view("courses.details")->with("course", $course);
+        $students = $course->people()->where("category", 2)->orderBy("name", "asc")->get();
+        $teachers = $course->people()->where("category", 1)->orderBy("name", "asc")->get();
+
+        return view("courses.details")->with(["course" => $course, "students" => $students, "teachers" => $teachers]);
     }
 
     /**
@@ -103,5 +106,18 @@ class CourseController extends Controller
         if ($course->delete()) {
             return response()->json('Deleted successfully');
         }
+    }
+
+    public function deletePerson(int $courseId, int $personId)
+    {
+        $course = Course::findOrFail($courseId);
+        if ($course->people()->detach($personId)) {
+            return redirect()->route("courses.show", $courseId)
+                ->with('success', "The person was removed from this course successfully.");
+        } else {
+            return redirect()->route("courses.show", $courseId)
+                ->with('error', "There was an error trying to remove this person from this course.");
+        }
+        return response()->json();
     }
 }
