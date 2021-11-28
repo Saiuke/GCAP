@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
+use App\Models\People;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +20,6 @@ class DatabaseSeeder extends Seeder
             PeopleCategorySeeder::class
         ]);
 
-        \App\Models\People::factory(100)->create();
-        \App\Models\Course::factory(10)->create();
+        \App\Models\Course::factory(15)->hasAttached(People::factory()->count(rand(8,34)))->create();
     }
 }
