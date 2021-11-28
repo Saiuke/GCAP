@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="col-6">
-            <div class="card my-4">
+            <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Teachers of this course
