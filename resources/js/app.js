@@ -3,6 +3,8 @@ import $ from 'jquery';
 
 window.$ = window.jQuery = $;
 
+import 'jquery-ui/ui/widgets/autocomplete.js';
+
 //BS
 require('./bootstrap');
 
@@ -67,5 +69,41 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 });
             }
         });
+    });
+
+    // Search persons
+
+    $(function () {
+        $("#search-person").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: $("#search-person").data("searchRoute"),
+                    data: {
+                        personName: request.term,
+                        courseId: $("#search-person").data("courseId")
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        const resp = $.map(data, function (obj) {
+                            return obj.name;
+                        });
+                        response(resp);
+                    }
+                });
+            },
+            minLength: 3,
+            focus: function (event, ui) {
+                $("#selected-person-id").val(ui.item.id);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#selected-person-id").val(ui.item.id);
+                $("#search-person").val(ui.item.name);
+                console.log("Selected: " + ui.item.name + " Id " + ui.item.id);
+                return false;
+            }
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>").append("<div>" + item.name + "</div>").appendTo(ul);
+        };
     });
 });

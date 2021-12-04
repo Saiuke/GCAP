@@ -17,9 +17,11 @@ use App\Http\Controllers\PeopleController;
 */
 
 Route::get('/', function () { return view('home'); })->name('home');
+Route::get('/courses/{courseId}/delete-person/{personId}', [CourseController::class, 'deletePerson'])->name("courses.delete.person");
+Route::get('/people/search', [PeopleController::class, 'autocomplete'])->name('people.search');
 Route::resource('students', StudentController::class);
 Route::resource('people', PeopleController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
-Route::get('/courses/{courseId}/delete-person/{personId}', [CourseController::class, 'deletePerson'])->name("courses.delete.person");
+
 

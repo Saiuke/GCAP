@@ -60,4 +60,13 @@ class PeopleController extends Controller
             return response()->json('Deleted successfully');
         }
     }
+
+    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $personName = $request->get("personName");
+        $courseId = $request->get("courseId");
+
+        $searchResult = People::select('name', 'id')->where("name", "LIKE", "%{$personName}%")->get();
+        return response()->json($searchResult);
+    }
 }

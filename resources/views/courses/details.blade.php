@@ -17,6 +17,29 @@
                 </div>
             </div>
         </div>
+        <div class="col-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Aggregate new person to course
+                </div>
+                <div class="card-body">
+                    <form class="row my-2">
+                        @csrf
+                        <div class="col-auto">
+                            <label for="search-person" class="col-form-label">Select a person</label>
+                        </div>
+                        <div class="col-8">
+                            <input id="search-person" data-course-id="{{ $course->id }}" data-search-route="{{ route('people.search') }}" name="search" class="form-control" type="text">
+                            <input type="hidden" name="selected-person-id" id="selected-person-id">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Add person</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-6">

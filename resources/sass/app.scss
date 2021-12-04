@@ -3,3 +3,13 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+//Jquery UI
+@import '~jquery-ui/themes/base/all.css';
+
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
