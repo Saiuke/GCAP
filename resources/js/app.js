@@ -72,22 +72,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
 
     // Search persons
-
     $(function () {
         $("#search-person").autocomplete({
-            source: function(request, response) {
+            source: function (request, response) {
                 $.ajax({
                     url: $("#search-person").data("searchRoute"),
                     data: {
                         personName: request.term,
-                        courseId: $("#search-person").data("courseId")
                     },
                     dataType: "json",
                     success: function (data) {
-                        const resp = $.map(data, function (obj) {
-                            return obj.name;
-                        });
-                        response(resp);
+                        response(data);
                     }
                 });
             },
@@ -99,7 +94,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
             select: function (event, ui) {
                 $("#selected-person-id").val(ui.item.id);
                 $("#search-person").val(ui.item.name);
-                console.log("Selected: " + ui.item.name + " Id " + ui.item.id);
                 return false;
             }
         }).autocomplete("instance")._renderItem = function (ul, item) {

@@ -108,7 +108,7 @@ class CourseController extends Controller
         }
     }
 
-    public function deletePerson(int $courseId, int $personId)
+    public function deletePerson(int $courseId, int $personId): \Illuminate\Http\RedirectResponse
     {
         $course = Course::findOrFail($courseId);
         if ($course->people()->detach($personId)) {
@@ -119,5 +119,21 @@ class CourseController extends Controller
                 ->with('error', "There was an error trying to remove this person from this course.");
         }
         return response()->json();
+    }
+
+    public function addPerson(Request $request)
+    {
+        $course = Course::find($request->post("course-id"));
+        $person = People::find($request->post("person-id"));
+
+        $result = $course->people()->sync([$person->id], false);
+
+        if($result["attached"]){
+            return redirect()->route("courses.show", $course->id)
+                ->with('success', "{$person->name} was added to this course successfully.");
+        }else{
+            return redirect()->route("courses.show", $course->id)
+                ->with('error', "Seems like \"{$person->name}\" was already on this course.");
+        }
     }
 }

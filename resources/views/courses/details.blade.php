@@ -24,14 +24,17 @@
                     Aggregate new person to course
                 </div>
                 <div class="card-body">
-                    <form class="row my-2">
+                    <form class="row my-2" action="{{ route('courses.add.person', $course->id) }}" method="post">
                         @csrf
+
+                        <input type="hidden" name="course-id" id="course-id" value="{{ $course->id }}">
+                        <input type="hidden" name="person-id" id="selected-person-id" >
+
                         <div class="col-auto">
                             <label for="search-person" class="col-form-label">Select a person</label>
                         </div>
                         <div class="col-8">
-                            <input id="search-person" data-course-id="{{ $course->id }}" data-search-route="{{ route('people.search') }}" name="search" class="form-control" type="text">
-                            <input type="hidden" name="selected-person-id" id="selected-person-id">
+                            <input id="search-person" data-search-route="{{ route('people.search') }}" name="search" class="form-control" type="text">
                         </div>
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">Add person</button>
