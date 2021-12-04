@@ -99,7 +99,7 @@ class CourseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Course $course
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Course $course)
     {
@@ -108,19 +108,28 @@ class CourseController extends Controller
         }
     }
 
+    /**
+     * @param int $courseId
+     * @param int $personId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deletePerson(int $courseId, int $personId): \Illuminate\Http\RedirectResponse
     {
         $course = Course::findOrFail($courseId);
+        $person = People::find($personId);
         if ($course->people()->detach($personId)) {
             return redirect()->route("courses.show", $courseId)
-                ->with('success', "The person was removed from this course successfully.");
+                ->with('success', "{$person->name} was removed from this course successfully.");
         } else {
             return redirect()->route("courses.show", $courseId)
-                ->with('error', "There was an error trying to remove this person from this course.");
+                ->with('error', "There was an error trying to remove \"{$person->name}\" from this course.");
         }
-        return response()->json();
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addPerson(Request $request)
     {
         $course = Course::find($request->post("course-id"));

@@ -19,10 +19,14 @@ use App\Http\Controllers\PeopleController;
 Route::get('/', function () { return view('home'); })->name('home');
 Route::get('/courses/{courseId}/delete-person/{personId}', [CourseController::class, 'deletePerson'])->name("courses.delete.person");
 Route::get('/people/search', [PeopleController::class, 'autocomplete'])->name('people.search');
+Route::get('/teachers/search', [TeacherController::class, 'autocomplete'])->name('teachers.search');
+Route::post('/teachers/generate-report', [TeacherController::class, 'generateReport'])->name('teachers.report');
 Route::post('/courses/add-person', [CourseController::class, 'addPerson'])->name("courses.add.person");
 Route::resource('students', StudentController::class);
 Route::resource('people', PeopleController::class);
 Route::resource('teachers', TeacherController::class);
 Route::resource('courses', CourseController::class);
+Route::get('/reports/teacher-students', function () { return view('reports.teacher-students'); })->name('reports.teacher.students');
+
 
 
