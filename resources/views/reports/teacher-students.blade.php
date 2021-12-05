@@ -101,7 +101,6 @@
                             <th> Id</th>
                             <th> Name</th>
                             <th> Description</th>
-                            <th> Teacher</th>
                             <th> Enrolled students</th>
                             <th> Options</th>
                         </tr>
@@ -112,8 +111,7 @@
                                     <td>{{ $course->id }}</td>
                                     <td>{{ $course->name }}</td>
                                     <td>{{ $course->description }}</td>
-                                    <td>Jhon Rudy</td>
-                                    <td>{{ rand(8,37) }}</td>
+                                    <td>{{ $course->people()->count() }}</td>
                                     <td>
                                         <div class="btn-group me-2" role="group" id="action-buttons">
                                             <a class="btn btn-sm btn-secondary" href="{{ route('courses.show', $course->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="View course's details">
