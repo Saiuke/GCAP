@@ -98,11 +98,12 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th> Id</th>
                             <th> Name</th>
-                            <th> Document</th>
-                            <th> Phone</th>
-                            <th> Email</th>
-                            <th> Actions</th>
+                            <th> Description</th>
+                            <th> Teacher</th>
+                            <th> Enrolled students</th>
+                            <th> Options</th>
                         </tr>
                         </thead>
                         <tbody>
